@@ -137,8 +137,8 @@ var viewModel = {
 
     resetMarkers: function() {
         viewModel.markerArray.forEach(function(eachMarker){
-            console.log(eachMarker);
             eachMarker.setIcon(null);
+            eachMarker.setAnimation(null);
         });
     },
 
@@ -149,16 +149,27 @@ var viewModel = {
             var newMark = new google.maps.Marker({
                 map: viewModel.map,
                 position: marker.position,
-                icon: marker.icon
+                icon: marker.icon,
+                animation: google.maps.Animation.DROP,
             });
 
             viewModel.markerArray.push(newMark);
 
             newMark.addListener('click', function() {
+                var that = this;
                 viewModel.resetMarkers();
                 this.setIcon(marker.mkImg);
-            })
+                this.setAnimation(google.maps.Animation.BOUNCE);
+                var timeout = window.setTimeout(stopBouncing, 2300);
+            
+                function stopBouncing() {
+                    that.setAnimation(null)
+                };
+            });
+
+
         });
+
     //    console.log(markerArray);
 
 
