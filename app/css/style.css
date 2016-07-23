@@ -43,12 +43,13 @@ a {
 .header {
   color: white;
   padding: 3vh;
-  font-size: 45px; }
+  padding-bottom: 4vh;
+  font-size: 55px; }
 
 .sub-header {
   color: white;
   font-size: 35px;
-  margin-bottom: 2vh; }
+  margin-bottom: 1vh; }
 
 .click {
   cursor: pointer; }
@@ -56,7 +57,11 @@ a {
 .nav {
   display: none;
   width: 82vw;
-  margin-left: 12vw; }
+  margin-left: 12vw;
+  position: fixed;
+  right: 75px;
+  top: 5vh;
+  z-index: 5; }
 
 #map {
   height: 100vh;
@@ -68,7 +73,7 @@ a {
   margin: 0 1vw 0 1vw; }
 
 .place-ul {
-  background-color: rgba(255, 255, 255, 0.6); }
+  background-color: rgba(255, 255, 255, 0.7); }
 
 .search-button {
   margin-bottom: 5vh;

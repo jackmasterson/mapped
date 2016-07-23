@@ -169,15 +169,15 @@ var viewModel = {
 
 
         });
-
-    //    console.log(markerArray);
-
-
-
     },
 
     mapShow: function() {
-        console.log('scroll down to the map using offset or w/e');
+         $('body,html').animate({
+            scrollTop: $('#map').offset().top
+         }, 800);
+
+         $('.header').fadeOut();
+         $('.sub-header').fadeOut();
     
     }
 };
