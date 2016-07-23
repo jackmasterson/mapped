@@ -27,7 +27,7 @@
                 <input class="query-input" type="text" placeholder="Start Typing to Search" data-bind="event: {keyup: viewModel.query}"/><br>
                     <ul class="place-ul" data-bind="foreach: model.places">
                         <span data-bind="if: visible">
-                            <li class="inline" data-bind="text: title, event: {mouseover: viewModel.hover, mouseout: viewModel.hoverOut}"></li>
+                            <li class="inline" data-bind="text: title, event: {mouseover: viewModel.hover, mouseout: viewModel.hoverOut, click: viewModel.markerClick}"></li>
                         </span>               
                     </ul>
                     <div data-bind="foreach: model.places">

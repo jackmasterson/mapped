@@ -112,9 +112,7 @@ var viewModel = {
         viewModel.val = $('.query-input').val();
         $('.mapIt').fadeIn();
         viewModel.searched(model.places);
-        //viewModel.searched(viewModel.markerArray);
-
-
+        viewModel.resetMarkers();
     },
 
 
@@ -153,11 +151,11 @@ var viewModel = {
         var mapDiv = document.getElementById('map');
         var mapOptions = {
             center: {
-                lat: 40.222391,
-                lng: -74.012082
+                lat: 40.220391,
+                lng: -74.003082
             },
             scrollwheel: false,
-            zoom: 15   
+            zoom: 16  
         };
 
         viewModel.map = new google.maps.Map(mapDiv, mapOptions);
@@ -195,13 +193,14 @@ var viewModel = {
                 icon: marker.icon,
                 animation: google.maps.Animation.DROP,
                 infowindow: new google.maps.InfoWindow({
-                    content: "<a target=_blank href="+marker.href+">"+
-                        marker.title+"</a><br>"+
-                        "<img class=info-img src="+marker.src+">"
+                    content: "<h2>"+
+                                 "<a target=_blank href="
+                                 +marker.href+">"+
+                                  marker.title+"</a>"+
+                             "</h2>"+
+                             "<img class=info-img src="+marker.src+">"
                 })
             }));
-
-           // viewModel.markerArray.push(newMark);
 
            marker.newMark().addListener('click', function() {
                 var that = this;
@@ -219,6 +218,23 @@ var viewModel = {
 
 
         });
+    },
+
+    markerClick: function() {
+        var that = this;
+        console.log(this.newMark());
+        viewModel.resetMarkers();
+
+        viewModel.resetMarkers();
+        that.newMark().setIcon(that.mkImg);
+        that.newMark().setAnimation(google.maps.Animation.BOUNCE);
+        that.newMark().infowindow.open(viewModel.map, that.newMark());
+         var timeout = window.setTimeout(stopBouncing, 2300);
+       
+        function stopBouncing() {
+            that.newMark().setAnimation(null)
+        };
+
     },
 
     mapShow: function() {
