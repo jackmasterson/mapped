@@ -153,7 +153,9 @@ var viewModel = {
                 icon: marker.icon,
                 animation: google.maps.Animation.DROP,
                 infowindow: new google.maps.InfoWindow({
-                    content: marker.href
+                    content: "<a target=_blank href="+marker.href+">"+
+                        marker.title+"</a><br>"+
+                        "<img class=info-img src="+marker.src+">"
                 })
             });
 
@@ -164,9 +166,8 @@ var viewModel = {
                 viewModel.resetMarkers();
                 this.setIcon(marker.mkImg);
                 this.setAnimation(google.maps.Animation.BOUNCE);
-                this.infowindow.open(viewModel.amp, this);
+                this.infowindow.open(viewModel.map, this);
                 
-
                 var timeout = window.setTimeout(stopBouncing, 2300);
                 function stopBouncing() {
                     that.setAnimation(null)
