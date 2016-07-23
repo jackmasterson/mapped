@@ -16,7 +16,8 @@ var model = {
             nums: '0',
             href: 'http://www.johnnymacbar.com/',
             id: 'mac',
-            visibility: ko.observable(true)
+            visibility: ko.observable(true),
+            icon: null
         }, {
 
             position: {
@@ -30,7 +31,8 @@ var model = {
             nums: '1',
             href: 'http://stoneponyonline.com/',
             id: 'pony',
-            visibility: ko.observable(true)
+            visibility: ko.observable(true),
+            icon: null
         }, {
             position: {
                 lat: 40.220239,
@@ -43,7 +45,8 @@ var model = {
             nums: '2',
             href: 'http://pizzaporta.com/ASBURY-PARK',
             id: 'porta',
-            visibility: ko.observable(true)
+            visibility: ko.observable(true),
+            icon: null
         }, {
 
             position: {
@@ -57,7 +60,8 @@ var model = {
             nums: '3',
             href: 'http://silverballmuseum.com/',
             id: 'silver',
-            visibility: ko.observable(true)
+            visibility: ko.observable(true),
+            icon: null
         }, {
             position: {
                 lat: 40.223796,
@@ -70,7 +74,8 @@ var model = {
             nums: '4',
             href: 'https://en.wikipedia.org/wiki/Asbury_Park_Convention_Hall',
             id: 'hall',
-            visibility: ko.observable(true)
+            visibility: ko.observable(true),
+            icon: null
         }
     ]
 };
@@ -130,15 +135,34 @@ var viewModel = {
 
     },
 
+    resetMarkers: function() {
+        viewModel.markerArray.forEach(function(eachMarker){
+            console.log(eachMarker);
+            eachMarker.setIcon(null);
+        });
+    },
+
     markers: function() {
+        viewModel.markerArray = [];
 
         model.places.forEach(function(marker){
-            console.log(marker);
-            marker = new google.maps.Marker({
+            var newMark = new google.maps.Marker({
                 map: viewModel.map,
-                position: marker.position
+                position: marker.position,
+                icon: marker.icon
+            });
+
+            viewModel.markerArray.push(newMark);
+
+            newMark.addListener('click', function() {
+                viewModel.resetMarkers();
+                this.setIcon(marker.mkImg);
             })
-        })
+        });
+    //    console.log(markerArray);
+
+
+
     },
 
     mapShow: function() {
