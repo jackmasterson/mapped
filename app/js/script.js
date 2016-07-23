@@ -10,7 +10,7 @@ var model = {
                 lng: -74.012914
             },
             title: 'Johnny Mac House Of Spirits',
-            tag: ['', 'visit', 'bar', 'alcohol', 'beer', 'nightlife', 'night life', 'pizza', 'johnny', 'mac'],
+            tag: ['bar', 'alcohol', 'beer', 'nightlife', 'night life', 'pizza', 'johnny', 'mac'],
             src: 'img/macs.jpg',
             mkImg: 'img/beer.png',
             nums: '0',
@@ -25,7 +25,7 @@ var model = {
                 lng: -74.000947
             },
             title: 'The Stone Pony',
-            tag: ['', 'visit', 'music', 'concert', 'live', 'stone', 'pony', 'entertainment'],
+            tag: ['music', 'concert', 'live', 'stone', 'pony', 'entertainment'],
             src: 'img/pony.jpg',
             mkImg: 'img/music.png',
             nums: '1',
@@ -39,7 +39,7 @@ var model = {
                 lng: -74.002344
             },
             title: 'Porta Pizzeria',
-            tag: ['', 'visit', 'bar', 'restaurant', 'pizza', 'nightclub', 'porta', 'wine'],
+            tag: ['bar', 'restaurant', 'pizza', 'nightclub', 'porta', 'wine'],
             src: 'img/porta.jpg',
             mkImg: 'img/pizza.png',
             nums: '2',
@@ -54,7 +54,7 @@ var model = {
                 lng: -73.999884
             },
             title: 'Silverball Museum',
-            tag: ['', 'visit', 'vacation', 'pinball', 'silverball', 'museum', 'silver'],
+            tag: ['vacation', 'pinball', 'silverball', 'museum', 'silver'],
             src: 'img/silverball.jpg',
             mkImg: 'img/pinball.png',
             nums: '3',
@@ -68,7 +68,7 @@ var model = {
                 lng: -73.998585
             },
             title: 'Convention Hall',
-            tag: ['', 'visit', 'shopping', 'tourist', 'pictures', 'convention', 'hall'],
+            tag: ['shopping', 'tourist', 'pictures', 'convention', 'hall'],
             src: 'img/hall.jpg',
             mkImg: 'img/shopping.png',
             nums: '4',
@@ -114,42 +114,28 @@ var viewModel = {
 
     searched: function() {
 
-        viewModel.navArray = ko.observableArray();
         viewModel.showArray = ko.observableArray();
-        viewModel.hideArray = ko.observableArray();
 
         model.places.forEach(function(place){
-            viewModel.navArray().push(place.title);
             var tag = place.tag;
+            tag.push(place.title);
+            
             place.visible(false);
             tag.forEach(function(each){
-            //    console.log(each);
                 var index = each.toLowerCase().indexOf(viewModel.val);
                 if(index > -1){
-
                     viewModel.showArray.push(place);
-
-
                 }
-         //       console.log(index); 
-
             });
                 
-
-                viewModel.showArray().forEach(function(each){
-                
-                    if(each.title === place.title){
-                        place.visible(true);
-                    }
-                        
-                    
-                    
-                }); 
-
+            viewModel.showArray().forEach(function(each){
+            
+                if(each.title === place.title){
+                    place.visible(true);
+                }
+            }); 
 
         });
-        console.log(viewModel.val);
-        console.log(viewModel.showArray());
        
     },
 
@@ -166,7 +152,6 @@ var viewModel = {
         };
 
         viewModel.map = new google.maps.Map(mapDiv, mapOptions);
-
         viewModel.markers();
 
     },
@@ -177,6 +162,17 @@ var viewModel = {
             eachMarker.setAnimation(null);
             eachMarker.infowindow.close();
         });
+    },
+
+    hover: function() {
+        console.log(this);
+        var thisClass = '.'+this.id;
+        $('.tags').hide();
+        $(thisClass).fadeIn();
+    },
+
+    hoverOut: function() {
+        $('.tags').hide();
     },
 
     markers: function() {

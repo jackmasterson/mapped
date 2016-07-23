@@ -86,3 +86,9 @@ a {
 .info-img {
   height: 200px;
   width: 200px; }
+
+.more-info {
+  margin-top: 20vh; }
+
+.tags {
+  display: none; }
