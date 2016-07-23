@@ -122,7 +122,7 @@ var viewModel = {
         var mapDiv = document.getElementById('map');
         var mapOptions = {
             center: {
-                lat: 40.220391,
+                lat: 40.222391,
                 lng: -74.012082
             },
             scrollwheel: false,
@@ -139,6 +139,7 @@ var viewModel = {
         viewModel.markerArray.forEach(function(eachMarker){
             eachMarker.setIcon(null);
             eachMarker.setAnimation(null);
+            eachMarker.infowindow.close();
         });
     },
 
@@ -151,6 +152,9 @@ var viewModel = {
                 position: marker.position,
                 icon: marker.icon,
                 animation: google.maps.Animation.DROP,
+                infowindow: new google.maps.InfoWindow({
+                    content: marker.href
+                })
             });
 
             viewModel.markerArray.push(newMark);
@@ -160,11 +164,14 @@ var viewModel = {
                 viewModel.resetMarkers();
                 this.setIcon(marker.mkImg);
                 this.setAnimation(google.maps.Animation.BOUNCE);
+                this.infowindow.open(viewModel.amp, this);
+                
+
                 var timeout = window.setTimeout(stopBouncing, 2300);
-            
                 function stopBouncing() {
                     that.setAnimation(null)
                 };
+
             });
 
 
