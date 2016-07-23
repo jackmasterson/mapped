@@ -10,14 +10,15 @@ var model = {
                 lng: -74.012914
             },
             title: 'Johnny Mac House Of Spirits',
-            tag: ['bar', 'alcohol', 'beer', 'nightlife', 'night life', 'pizza', 'johnny', 'mac'],
+            tag: ['bar', 'alcohol', 'beer', 'nightlife', 'night life', 'pizza'],
             src: 'img/macs.jpg',
             mkImg: 'img/beer.png',
             nums: '0',
             href: 'http://www.johnnymacbar.com/',
             id: 'mac',
             visible: ko.observable(true),
-            icon: null
+            icon: null,
+            newMark: ko.observable()
         }, {
 
             position: {
@@ -25,28 +26,30 @@ var model = {
                 lng: -74.000947
             },
             title: 'The Stone Pony',
-            tag: ['music', 'concert', 'live', 'stone', 'pony', 'entertainment'],
+            tag: ['music', 'concert', 'live', 'entertainment'],
             src: 'img/pony.jpg',
             mkImg: 'img/music.png',
             nums: '1',
             href: 'http://stoneponyonline.com/',
             id: 'pony',
             visible: ko.observable(true),
-            icon: null
+            icon: null,
+            newMark: ko.observable()
         }, {
             position: {
                 lat: 40.220239,
                 lng: -74.002344
             },
             title: 'Porta Pizzeria',
-            tag: ['bar', 'restaurant', 'pizza', 'nightclub', 'porta', 'wine'],
+            tag: ['bar', 'restaurant', 'pizza', 'nightclub', 'wine'],
             src: 'img/porta.jpg',
             mkImg: 'img/pizza.png',
             nums: '2',
             href: 'http://pizzaporta.com/ASBURY-PARK',
             id: 'porta',
             visible: ko.observable(true),
-            icon: null
+            icon: null,
+            newMark: ko.observable()
         }, {
 
             position: {
@@ -54,28 +57,30 @@ var model = {
                 lng: -73.999884
             },
             title: 'Silverball Museum',
-            tag: ['vacation', 'pinball', 'silverball', 'museum', 'silver'],
+            tag: ['vacation', 'pinball', 'museum', 'arcade'],
             src: 'img/silverball.jpg',
             mkImg: 'img/pinball.png',
             nums: '3',
             href: 'http://silverballmuseum.com/',
             id: 'silver',
             visible: ko.observable(true),
-            icon: null
+            icon: null,
+            newMark: ko.observable()
         }, {
             position: {
                 lat: 40.223796,
                 lng: -73.998585
             },
             title: 'Convention Hall',
-            tag: ['shopping', 'tourist', 'pictures', 'convention', 'hall'],
+            tag: ['shopping', 'tourist', 'pictures'],
             src: 'img/hall.jpg',
             mkImg: 'img/shopping.png',
             nums: '4',
             href: 'https://en.wikipedia.org/wiki/Asbury_Park_Convention_Hall',
             id: 'hall',
             visible: ko.observable(true),
-            icon: null
+            icon: null,
+            newMark: ko.observable()
         }
     ]
 };
@@ -106,21 +111,24 @@ var viewModel = {
 
         viewModel.val = $('.query-input').val();
         $('.mapIt').fadeIn();
-        viewModel.searched();
+        viewModel.searched(model.places);
+        //viewModel.searched(viewModel.markerArray);
 
 
     },
 
 
-    searched: function() {
+    searched: function(type) {
 
         viewModel.showArray = ko.observableArray();
 
-        model.places.forEach(function(place){
+        type.forEach(function(place){
             var tag = place.tag;
             tag.push(place.title);
             
             place.visible(false);
+            console.log(place);
+            place.newMark().setMap(null);
             tag.forEach(function(each){
                 var index = each.toLowerCase().indexOf(viewModel.val);
                 if(index > -1){
@@ -132,6 +140,7 @@ var viewModel = {
             
                 if(each.title === place.title){
                     place.visible(true);
+                    place.newMark().setMap(viewModel.map);
                 }
             }); 
 
@@ -157,7 +166,8 @@ var viewModel = {
     },
 
     resetMarkers: function() {
-        viewModel.markerArray.forEach(function(eachMarker){
+        model.places.forEach(function(each){
+            var eachMarker = each.newMark();
             eachMarker.setIcon(null);
             eachMarker.setAnimation(null);
             eachMarker.infowindow.close();
@@ -165,7 +175,7 @@ var viewModel = {
     },
 
     hover: function() {
-        console.log(this);
+
         var thisClass = '.'+this.id;
         $('.tags').hide();
         $(thisClass).fadeIn();
@@ -179,7 +189,7 @@ var viewModel = {
         viewModel.markerArray = [];
 
         model.places.forEach(function(marker){
-            var newMark = new google.maps.Marker({
+            marker.newMark(new google.maps.Marker({
                 map: viewModel.map,
                 position: marker.position,
                 icon: marker.icon,
@@ -189,11 +199,11 @@ var viewModel = {
                         marker.title+"</a><br>"+
                         "<img class=info-img src="+marker.src+">"
                 })
-            });
+            }));
 
-            viewModel.markerArray.push(newMark);
+           // viewModel.markerArray.push(newMark);
 
-            newMark.addListener('click', function() {
+           marker.newMark().addListener('click', function() {
                 var that = this;
                 viewModel.resetMarkers();
                 this.setIcon(marker.mkImg);
