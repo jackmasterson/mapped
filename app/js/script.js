@@ -87,27 +87,67 @@ var viewModel = {
 
     init: function() {
         Place();
-    },
-
-    searched: function() {
-        console.log('searched!');
-    },
+        viewModel.mapView();
+    },    
 
     next: function() {
 
         $('.splash').fadeOut(function(){
             $('.nav').fadeIn();
         });
+    },
+
+    query: function() {
+
+        viewModel.val = $('.query-input').val();
+        $('.mapIt').fadeIn();
+        viewModel.searched();
+
+    },
+
+
+    searched: function() {
+
+        console.log('filter goes here');
+
+    },
+
+    mapView: function() {
+        
+        var mapDiv = document.getElementById('map');
+        var mapOptions = {
+            center: {
+                lat: 40.220391,
+                lng: -74.012082
+            },
+            scrollwheel: false,
+            zoom: 15   
+        };
+
+        viewModel.map = new google.maps.Map(mapDiv, mapOptions);
+
+        viewModel.markers();
+
+    },
+
+    markers: function() {
+
+        model.places.forEach(function(marker){
+            console.log(marker);
+            marker = new google.maps.Marker({
+                map: viewModel.map,
+                position: marker.position
+            })
+        })
+    },
+
+    mapShow: function() {
+        console.log('scroll down to the map using offset or w/e');
+    
     }
 };
 
 
-var mapView = {
-
-    init: function() {
-        console.log('heres where the map gets initialized');
-    }
-};
 
 
 ko.applyBindings(viewModel.init());
