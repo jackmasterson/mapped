@@ -82,7 +82,8 @@ var model = {
             icon: null,
             newMark: ko.observable()
         }
-    ]
+    ],
+    surfInfo: ko.observableArray()
 };
 
 var viewModel = {
@@ -91,6 +92,7 @@ var viewModel = {
       
         viewModel.mapView();
         viewModel.scrollDetect();
+        viewModel.surf.init();
     },    
 
     next: function() {
@@ -254,6 +256,50 @@ var viewModel = {
 
          $('.sub-header').fadeOut();
     
+    },
+
+    surf: {
+        init: function() {
+        this.surfURL = 'http://magicseaweed.com/api/00e1e43e51248a4cb3431f4b73aeb4b3/forecast/?spot_id=857';
+        this.surfInfo = model.surfInfo;
+
+        viewModel.surf.render();
+        
+        },
+
+        render: function() {
+            var self = this;
+
+            $.ajax({
+                    url: this.surfURL,
+                    dataType: 'jsonp'
+                })
+                .done(function(info) {
+
+                    var sixAM = info[3];
+                    var noon = info[5];
+                    var sixPM = info[7];
+                    var threeTimes = [];
+                    threeTimes.push(sixAM, noon, sixPM);
+                    info.forEach(function(data){
+                        var time = data.localTimestamp;
+                        var sixAm = time == '1469350800';
+                        var noon = time == '1469372400';
+                        var sixPm = time == '1469394000';
+
+                        if(sixAm || noon || sixPm){
+                            model.surfInfo.push(data);
+
+                        }
+                    });
+                    clearTimeout(self.surfTimeout);
+
+            });
+        },
+
+        show: function() {
+            $('.surf-info').fadeIn();
+        }
     }
 };
 

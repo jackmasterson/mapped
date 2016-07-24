@@ -21,17 +21,31 @@
                 <h1 class="header">Asbury Park, New Jersey</h1>
                 <h2 class="sub-header">Come Play</h2>
                 <h3 class="click more-info" data-bind="click: viewModel.mapShow">Click to Learn More</h3>
+                <h3 class="click surf" data-bind="click: viewModel.surf.show">Click for Surfing Conditions</h3>
+            </div>
+            <div class="surf-info" data-bind="foreach: model.surfInfo">
+                <h2 class="time-header">Time: <span data-bind="text: localTimestamp"></span></h2>
+                <h3>Temp: <span data-bind="text: condition.temperature"></span> deg F</h3>
+                <h3>
+                <h3>Swell Max Height: <span data-bind="text: swell.absMaxBreakingHeight"></span></h3>
+                <h3>Swell Min Height: <span data-bind="text: swell.absMinBreakingHeight"></span></h3>
+                <h3>Wind Chill: <span data-bind="text: wind.chill"></span></span></h3>
+                <h3>Wind Speed: 
+                    <span data-bind="text: wind.speed"></span>
+                    <span data-bind="text: wind.unit"></span> 
+                    <span data-bind="text: wind.compassDirection"></span>
+                </h3>
             </div>
             <div class="nav">
                 <input class="query-input" type="text" placeholder="Start Typing to Search" data-bind="event: {keyup: viewModel.query}"/><br>
-                    <ul class="place-ul" data-bind="foreach: model.places">
-                        <span data-bind="if: visible">
-                            <li class="click inline" data-bind="text: title, event: {mouseover: viewModel.hover, mouseout: viewModel.hoverOut, click: viewModel.markerClick}"></li>
-                        </span>               
-                    </ul>
-                    <div data-bind="foreach: model.places">
-                        <h3 data-bind="text: tag, attr: {'class': id}, css: {tags: tag}"></h3>
-                    </div>
+                <ul class="place-ul" data-bind="foreach: model.places">
+                    <span data-bind="if: visible">
+                        <li class="click inline" data-bind="text: title, event: {mouseover: viewModel.hover, mouseout: viewModel.hoverOut, click: viewModel.markerClick}"></li>
+                    </span>               
+                </ul>
+                <div data-bind="foreach: model.places">
+                    <h3 data-bind="text: tag, attr: {'class': id}, css: {tags: tag}"></h3>
+                </div>
             </div>
         </div>
     </div>

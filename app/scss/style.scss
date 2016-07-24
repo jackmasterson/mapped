@@ -113,9 +113,43 @@
 	display: none;
 	position: absolute;
 	width: 40vw;
-	background-color: rgba(255,255,255,0.4);
+	background-color: rgba(255,255,255,0.8);
 	color: black;
 	margin-left: 20vw;
 	border-radius: 20px;
+}
+
+.more-links {
+	position: absolute;
+	top: 110vh;
+	left: 7vw;
+	z-index: 10;
+	width: 20vw;
+	height: 16vh;
+	padding: 5px;
+	background-color: rgba(255,255,255,0.8);
+	cursor: pointer;
+}
+
+.surf-img {
+	height: 75px;
+	width: 75px;
+}
+
+.surf-info {
+	height: 30vh;
+	overflow-y: scroll;
+	display: none;
+	position: absolute;
+	right: 3vw;
+	bottom: 5vh;
+}
+
+.surf-header {
+	color: black;
+}
+
+.time-header {
+	margin-top: 25px;
 }
 
