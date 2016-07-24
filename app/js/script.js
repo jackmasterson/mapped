@@ -314,7 +314,7 @@ var viewModel = {
         var val = $('.query-input').val();
         console.log(val);
         window.open(
-            'https://google.com/#q='+val,
+            'https://google.com/#q='+val+'+asbury+park+nj',
             '_blank'
         );
     }
