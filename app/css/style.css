@@ -13,6 +13,10 @@ ul {
   margin: 0;
   padding: 0; }
 
+a {
+  color: #ccc;
+  text-decoration: none; }
+
 h1,
 h2,
 h3,
@@ -126,3 +130,8 @@ a {
 
 .time-header {
   margin-top: 25px; }
+
+.seaweed-credit {
+  font-size: 15px;
+  opacity: 0.5;
+  color: white; }

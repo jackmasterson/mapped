@@ -108,13 +108,12 @@ var viewModel = {
         $(window).scroll(function() {
             var height = $(window).scrollTop();
 
-            if(height  >  400) {
+            if(height  >  300) {
+                $('.nav').fadeIn();
+            }
 
-                $('.sub-header').fadeOut(function(){
-                    $('.more-info').fadeOut();
-                    $('.nav').fadeIn();
-
-                });
+            else {
+                $('.nav').fadeOut();
             }
         });
     },
@@ -254,8 +253,6 @@ var viewModel = {
          $('body,html').animate({
             scrollTop: $('#map').offset().top
          }, 800);
-
-         $('.sub-header').fadeOut();
     
     },
 
@@ -284,22 +281,32 @@ var viewModel = {
                     threeTimes.push(sixAM, noon, sixPM);
                     info.forEach(function(data){
                         var time = data.localTimestamp;
-                        var sixAm = time == '1469350800';
-                        var noon = time == '1469372400';
-                        var sixPm = time == '1469394000';
+                        var morning = time == '1469350800';
+                        var midday = time == '1469372400';
+                        var evening = time == '1469394000';
+                        var date = new Date();
+                        date.setTime(time * 1000);
 
-                        if(sixAm || noon || sixPm){
-                            model.surfInfo.push(data);
+                        var setTime = date;
+                        var hour = setTime.getHours();
+                        var hourFormat = hour + ':00am';
+                        if(hour > 12){
+                            hour = hour - 12;
+                            hourFormat = hour + ':00pm';
+                        }
 
+
+                        if(morning || midday || evening){
+                            model.surfInfo.push({time: hourFormat, data});
                         }
                     });
-                    clearTimeout(self.surfTimeout);
-
             });
         },
 
         show: function() {
+
             $('.surf-info').fadeIn();
+            $('.nav').fadeOut();
         }
     }
 };
