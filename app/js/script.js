@@ -85,18 +85,10 @@ var model = {
     ]
 };
 
-var Place = function() {
-
-    model.places.forEach(function(each){
-       // console.log(each);
-    });
-
-};
-
 var viewModel = {
 
     init: function() {
-        Place();
+      
         viewModel.mapView();
         viewModel.scrollDetect();
     },    
@@ -115,8 +107,7 @@ var viewModel = {
 
             if(height  >  400) {
 
-                $('.header').fadeOut(function(){
-                    $('.sub-header').fadeOut();
+                $('.sub-header').fadeOut(function(){
                     $('.more-info').fadeOut();
                     $('.nav').fadeIn();
 
@@ -172,7 +163,7 @@ var viewModel = {
                 lng: -74.003082
             },
             scrollwheel: false,
-            zoom: 15 
+            zoom: 16
         };
 
         viewModel.map = new google.maps.Map(mapDiv, mapOptions);
@@ -232,34 +223,23 @@ var viewModel = {
     },
 
     markerClick: function() {
-    /*    var that = this;
-        console.log(this.newMark());
-        viewModel.resetMarkers();
-
-        that.newMark().setIcon(that.mkImg);
-        that.newMark().setAnimation(google.maps.Animation.BOUNCE);
-        that.newMark().infowindow.open(viewModel.map, that.newMark());
-         var timeout = window.setTimeout(stopBouncing, 2300);
-       
-        function stopBouncing() {
-            that.newMark().setAnimation(null)
-        };*/
         var that = this;
         model.places.forEach(function(marker){
             viewModel.resetMarkers();
             viewModel.iconManip(that.newMark());
-        })
+        });
+        viewModel.mapShow();
         
 
     },
 
     iconManip: function(type){
-        console.log(type);
+
         type.setIcon(type.mkImg);
         type.setAnimation(google.maps.Animation.BOUNCE);
         type.infowindow.open(viewModel.map, type);
+        
         var timeout = window.setTimeout(stopBouncing, 2300);
-
         function stopBouncing() {
             type.setAnimation(null);
         };
@@ -267,13 +247,11 @@ var viewModel = {
 
     },
 
-
     mapShow: function() {
          $('body,html').animate({
             scrollTop: $('#map').offset().top
          }, 800);
 
-         $('.header').fadeOut();
          $('.sub-header').fadeOut();
     
     }

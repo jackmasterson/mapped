@@ -56,11 +56,10 @@ a {
 
 .nav {
   display: none;
-  width: 82vw;
-  margin-left: 12vw;
+  width: 75vw;
   position: fixed;
-  right: 75px;
-  top: 5vh;
+  right: 5vw;
+  bottom: 10vh;
   z-index: 5; }
 
 #map {
@@ -84,17 +83,17 @@ a {
   display: none; }
 
 .info-img {
-  height: 200px;
-  width: 200px; }
+  height: 100px;
+  width: 100px; }
 
 .more-info {
   margin-top: 20vh; }
 
 .tags {
   display: none;
+  position: absolute;
   width: 40vw;
   background-color: rgba(255, 255, 255, 0.4);
   color: black;
   margin-left: 20vw;
-  margin-top: 2vh;
   border-radius: 20px; }
