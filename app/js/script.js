@@ -98,12 +98,30 @@ var viewModel = {
     init: function() {
         Place();
         viewModel.mapView();
+        viewModel.scrollDetect();
     },    
 
     next: function() {
 
         $('.splash').fadeOut(function(){
             $('.nav').fadeIn();
+        });
+    },
+
+    scrollDetect: function(){
+
+        $(window).scroll(function() {
+            var height = $(window).scrollTop();
+
+            if(height  >  400) {
+
+                $('.header').fadeOut(function(){
+                    $('.sub-header').fadeOut();
+                    $('.more-info').fadeOut();
+                    $('.nav').fadeIn();
+
+                });
+            }
         });
     },
 
@@ -125,7 +143,6 @@ var viewModel = {
             tag.push(place.title);
             
             place.visible(false);
-            console.log(place);
             place.newMark().setMap(null);
             tag.forEach(function(each){
                 var index = each.toLowerCase().indexOf(viewModel.val);
@@ -155,7 +172,7 @@ var viewModel = {
                 lng: -74.003082
             },
             scrollwheel: false,
-            zoom: 16  
+            zoom: 15 
         };
 
         viewModel.map = new google.maps.Map(mapDiv, mapOptions);
@@ -203,16 +220,9 @@ var viewModel = {
             }));
 
            marker.newMark().addListener('click', function() {
-                var that = this;
+
                 viewModel.resetMarkers();
-                this.setIcon(marker.mkImg);
-                this.setAnimation(google.maps.Animation.BOUNCE);
-                this.infowindow.open(viewModel.map, this);
-                
-                var timeout = window.setTimeout(stopBouncing, 2300);
-                function stopBouncing() {
-                    that.setAnimation(null)
-                };
+                viewModel.iconManip(marker.newMark());
 
             });
 
@@ -221,11 +231,10 @@ var viewModel = {
     },
 
     markerClick: function() {
-        var that = this;
+    /*    var that = this;
         console.log(this.newMark());
         viewModel.resetMarkers();
 
-        viewModel.resetMarkers();
         that.newMark().setIcon(that.mkImg);
         that.newMark().setAnimation(google.maps.Animation.BOUNCE);
         that.newMark().infowindow.open(viewModel.map, that.newMark());
@@ -233,9 +242,30 @@ var viewModel = {
        
         function stopBouncing() {
             that.newMark().setAnimation(null)
-        };
+        };*/
+        var that = this;
+        model.places.forEach(function(marker){
+            viewModel.resetMarkers();
+            viewModel.iconManip(that.newMark());
+        })
+        
 
     },
+
+    iconManip: function(type){
+
+        type.setIcon(type.mkImg);
+        type.setAnimation(google.maps.Animation.BOUNCE);
+        type.infowindow.open(viewModel.map, type);
+        var timeout = window.setTimeout(stopBouncing, 2300);
+
+        function stopBouncing() {
+            type.setAnimation(null);
+        };
+
+
+    },
+
 
     mapShow: function() {
          $('body,html').animate({
