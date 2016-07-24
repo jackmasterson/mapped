@@ -152,6 +152,7 @@ var viewModel = {
                 }
             }); 
 
+
         });
        
     },
@@ -310,7 +311,7 @@ var viewModel = {
         }
     },
 
-    googleIt: function(clicked){
+    googleIt: function(){
         var val = $('.query-input').val();
         console.log(val);
         window.open(
