@@ -24,12 +24,18 @@
                 <h3 class="click surf" data-bind="click: viewModel.surf.show">Click for Surfing Conditions</h3>
             </div>
             <div class="surf-info" data-bind="foreach: model.surfInfo">
-                <h2 class="time-header">Time: <span data-bind="text: localTimestamp"></span></h2>
-                <h3>Temp: <span data-bind="text: condition.temperature"></span> deg F</h3>
-                <h3>
-                <h3>Swell Max Height: <span data-bind="text: swell.absMaxBreakingHeight"></span></h3>
-                <h3>Swell Min Height: <span data-bind="text: swell.absMinBreakingHeight"></span></h3>
-                <h3>Wind Chill: <span data-bind="text: wind.chill"></span></span></h3>
+                <h3 class="time-header">Temp: 
+                    <span data-bind="text: condition.temperature"></span> deg F
+                </h3>
+                <h3>Swell Max Height: 
+                    <span data-bind="text: swell.absMaxBreakingHeight"></span>
+                </h3>
+                <h3>Swell Min Height: 
+                    <span data-bind="text: swell.absMinBreakingHeight"></span>
+                </h3>
+                <h3>Wind Chill: 
+                    <span data-bind="text: wind.chill"></span></span>
+                </h3>
                 <h3>Wind Speed: 
                     <span data-bind="text: wind.speed"></span>
                     <span data-bind="text: wind.unit"></span> 

@@ -83,7 +83,8 @@ var model = {
             newMark: ko.observable()
         }
     ],
-    surfInfo: ko.observableArray()
+    surfInfo: ko.observableArray(),
+    surfTime: [{time: '6am'}, {time:'Noon'}, {time:'6pm'}]
 };
 
 var viewModel = {
