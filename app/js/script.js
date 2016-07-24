@@ -308,6 +308,15 @@ var viewModel = {
             $('.surf-info').fadeIn();
             $('.nav').fadeOut();
         }
+    },
+
+    googleIt: function(clicked){
+        var val = $('.query-input').val();
+        console.log(val);
+        window.open(
+            'https://google.com/#q='+val,
+            '_blank'
+        );
     }
 };
 

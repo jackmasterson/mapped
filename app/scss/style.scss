@@ -18,6 +18,7 @@
  a {
  	color: #ccc;
  	text-decoration: none;
+ 	cursor: pointer;
  }
 
  h1,
@@ -162,5 +163,17 @@
 	font-size: 15px;
 	opacity: 0.5;
 	color: white;
+}
+
+.google-search {
+	color: black;
+	background-color: rgba(255,255,255,0.7);
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+.google-href {
+	color: black;
+	text-decoration: underline;
 }
 

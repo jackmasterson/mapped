@@ -54,6 +54,7 @@
                         <li class="click inline" data-bind="text: title, event: {mouseover: viewModel.hover, mouseout: viewModel.hoverOut, click: viewModel.markerClick}"></li>
                     </span>               
                 </ul>
+                <h4 class='google-search'>Can't find what you're looking for? <a target='_blank' class='google-href' data-bind="click: viewModel.googleIt">Click here</a> to search on Google</h4>
                 <div data-bind="foreach: model.places">
                     <h3 data-bind="text: tag, attr: {'class': id}, css: {tags: tag}"></h3>
                 </div>
