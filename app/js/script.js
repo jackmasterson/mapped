@@ -208,6 +208,7 @@ var viewModel = {
                 map: viewModel.map,
                 position: marker.position,
                 icon: marker.icon,
+                mkImg: marker.mkImg,
                 animation: google.maps.Animation.DROP,
                 infowindow: new google.maps.InfoWindow({
                     content: "<h2>"+
@@ -253,7 +254,7 @@ var viewModel = {
     },
 
     iconManip: function(type){
-
+        console.log(type);
         type.setIcon(type.mkImg);
         type.setAnimation(google.maps.Animation.BOUNCE);
         type.infowindow.open(viewModel.map, type);
