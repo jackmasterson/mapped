@@ -93,7 +93,7 @@ var viewModel = {
       
         viewModel.mapView();
         viewModel.scrollDetect();
-        viewModel.surf.init();
+      //  viewModel.surf.init();
     },    
 
     next: function() {

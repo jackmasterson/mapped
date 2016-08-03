@@ -21,31 +21,6 @@
                 <h1 class="header">Asbury Park, New Jersey</h1>
                 <h2 class="sub-header">Come Play</h2>
                 <h3 class="click more-info" data-bind="click: viewModel.mapShow">Click to Learn More</h3>
-                <h3 class="click surf" data-bind="click: viewModel.surf.show">Click for Today's Surfing Conditions</h3>
-                <h4 class="seaweed-credit">Surfing Information provided by 
-                    <a class="seaweed-creidt" target="_blank" href="http://magicseaweed.com/">Magic Seaweed</a>
-                </h4>
-            </div>
-            <div class="surf-info" data-bind="foreach: model.surfInfo">
-                <h3 class="time-header">
-                    <span data-bind="text: time"></span>
-                <h3>Temp: 
-                    <span data-bind="text: data.condition.temperature"></span>&degF
-                </h3>
-                <h3>Swell Max Height: 
-                    <span data-bind="text: data.swell.absMaxBreakingHeight"></span>ft
-                </h3>
-                <h3>Swell Min Height: 
-                    <span data-bind="text: data.swell.absMinBreakingHeight"></span>ft
-                </h3>
-                <h3>Wind Chill: 
-                    <span data-bind="text: data.wind.chill"></span></span>
-                </h3>
-                <h3>Wind Speed: 
-                    <span data-bind="text: data.wind.speed"></span>
-                    <span data-bind="text: data.wind.unit"></span> 
-                    <span data-bind="text: data.wind.compassDirection"></span>
-                </h3>
             </div>
             <div class="nav">
                 <input class="query-input" type="text" placeholder="Search Keywords i.e. 'bar' or'restaurant'" data-bind="event: {keyup: viewModel.query}"/><br>
@@ -54,7 +29,7 @@
                         <li class="click inline" data-bind="text: title, event: {mouseover: viewModel.hover, mouseout: viewModel.hoverOut, click: viewModel.markerClick}"></li>
                     </span>               
                 </ul>
-                <h4 class='google-search'>Can't find what you're looking for? <a target='_blank' class='google-href' data-bind="click: viewModel.googleIt">Click here</a> to search on Google</h4>
+                <h4 class='google-search'>Can't find what you're looking for? Type in the search box then <a target='_blank' class='google-href' data-bind="click: viewModel.googleIt">Click Here</a> to search on Google</h4>
                 <div data-bind="foreach: model.places">
                     <h3 data-bind="text: tag, attr: {'class': id}, css: {tags: tag}"></h3>
                 </div>
