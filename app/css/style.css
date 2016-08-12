@@ -146,3 +146,14 @@ a {
 .google-href {
   color: black;
   text-decoration: underline; }
+
+.map-thumb-div {
+  position: absolute;
+  display: none; }
+
+.map-thumb {
+  height: 125px;
+  width: auto; }
+
+.map-thumb-header {
+  color: black; }
