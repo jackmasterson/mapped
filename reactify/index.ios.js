@@ -9,45 +9,77 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
+  Image,
   View
 } from 'react-native';
 
-class reactify extends Component {
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  header: {
+    fontSize: 25
+  },
+  subheaeder: {
+    fontSize: 15
+  },
+  backSet: {
+    flex: 1,
+    backgroundColor: '#F5FCFF'
+  },
+  started: {
+    fontSize: 20,
+    height: 50
+  }
+
+});
+
+
+class Splash extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
+        <Text style={styles.header}>
+          Greetings from Asbury Park, NJ
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
+        <Text style={styles.subheader}>
+          Come Play
         </Text>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+class Started extends Component {
+  render() {
+    return (
+      <View>
+        <Text style={styles.started}>
+          Let{'\''}s get started
+        </Text>
+      </View>
+    );
+  }
+}
+
+
+class reactify extends Component {
+  render() {
+    return (
+      <View style={styles.backSet, styles.container}>
+        
+          <Splash/>
+          <Started/>
+        
+      </View>
+    )
+  }
+  
+}
+
+
 
 AppRegistry.registerComponent('reactify', () => reactify);
