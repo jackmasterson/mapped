@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  Navigator,
   StyleSheet,
   Text,
   Image,
@@ -16,7 +17,7 @@ import {
 import HelloWorld from './HelloWorld.js';
 
 
-const styles = StyleSheet.create({
+/*const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -65,13 +66,43 @@ class Started extends Component {
       </View>
     );
   }
-}
-
+}*/
 
 class reactify extends Component {
   render() {
     return (
-      <View style={styles.backSet, styles.container}>
+      <Navigator
+        initialRoute={{ title: 'My Initial Scene', index: 0 }}
+        renderScene = {(route, navigator) =>
+          <HelloWorld
+            title={route.title}
+
+            onForward= { () => {
+              const nextIndex = route.index + 1;
+              navigator.push({
+                title: 'Scene ' + nextIndex,
+                index: nextIndex,
+
+              });
+            }}
+
+            onBack= {() => {
+              if (route.index > 0) {
+                navigator.pop();
+              }
+            }}
+          />
+        }
+      />
+    )
+  }
+}
+
+
+/*class reactify extends Component {
+  render() {
+    return (
+      <View &style={styles.backSet, styles.container}>
         
           <Splash/>
           <Started/>
@@ -81,8 +112,8 @@ class reactify extends Component {
     )
   }
   
-}
+}*/
 
-
+//AppRegistry.registerComponent('SimpleNavigationApp', () => SimpleNavigationApp);
 
 AppRegistry.registerComponent('reactify', () => reactify);
