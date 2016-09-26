@@ -17,11 +17,11 @@ import {
 import HelloWorld from './HelloWorld.js';
 
 
-/*const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'center'/*,
+    alignItems: 'center'*/
   },
   header: {
     fontSize: 25
@@ -34,8 +34,7 @@ import HelloWorld from './HelloWorld.js';
     backgroundColor: '#F5FCFF'
   },
   started: {
-    fontSize: 20,
-    height: 50
+    fontSize: 20
   }
 
 });
@@ -60,17 +59,21 @@ class Started extends Component {
   render() {
     return (
       <View>
-        <Text style={styles.started}>
+        <Text>
           Let{'\''}s get started
         </Text>
       </View>
     );
   }
-}*/
+}
 
 class reactify extends Component {
   render() {
     return (
+    <View style={styles.container}>
+          <Splash/>
+          <Started/>
+
       <Navigator
         initialRoute={{ title: 'My Initial Scene', index: 0 }}
         renderScene = {(route, navigator) =>
@@ -94,7 +97,11 @@ class reactify extends Component {
           />
         }
       />
+      </View>
+
+      
     )
+    
   }
 }
 
@@ -102,7 +109,7 @@ class reactify extends Component {
 /*class reactify extends Component {
   render() {
     return (
-      <View &style={styles.backSet, styles.container}>
+      <View style={styles.backSet, styles.container}>
         
           <Splash/>
           <Started/>
