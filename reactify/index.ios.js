@@ -13,6 +13,8 @@ import {
   View
 } from 'react-native';
 
+import HelloWorld from './HelloWorld.js';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -73,6 +75,7 @@ class reactify extends Component {
         
           <Splash/>
           <Started/>
+          <HelloWorld/>
         
       </View>
     )
