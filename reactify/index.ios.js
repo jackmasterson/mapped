@@ -14,14 +14,12 @@ import {
   View
 } from 'react-native';
 
-import HelloWorld from './HelloWorld.js';
+import PageTurn from './PageTurn.js';
 
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center'/*,
-    alignItems: 'center'*/
+    flex: 1
   },
   header: {
     fontSize: 25
@@ -35,6 +33,10 @@ const styles = StyleSheet.create({
   },
   started: {
     fontSize: 20
+  },
+  img: {
+    height: 50,
+    width: 50
   }
 
 });
@@ -55,35 +57,41 @@ class Splash extends Component {
   }
 }
 
-class Started extends Component {
+class Wild extends Component {
   render() {
     return (
-      <View>
-        <Text>
-          Let{'\''}s get started
-        </Text>
-      </View>
-    );
+      <Image style={styles.img} source={require('./hey.png')}/>
+    )
   }
 }
+
+class Scenea extends Component {
+  render() {
+    return (
+      <Text>Hey</Text>
+    )
+  }
+}
+
 
 class reactify extends Component {
   render() {
     return (
     <View style={styles.container}>
-          <Splash/>
-          <Started/>
+      <Splash/>
+      
 
       <Navigator
         initialRoute={{ title: 'My Initial Scene', index: 0 }}
         renderScene = {(route, navigator) =>
-          <HelloWorld
+     
+          <PageTurn
             title={route.title}
 
             onForward= { () => {
-              const nextIndex = route.index + 1;
+              const nextIndex = route.index + 'a';
               navigator.push({
-                title: 'Scene ' + nextIndex,
+                title: <Scenea/>,
                 index: nextIndex,
 
               });
