@@ -15,13 +15,20 @@ import PageTurn from './PageTurn.js';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+  },
+  text: {
+    textAlign: 'center'
   },
   header: {
-    fontSize: 25
+    fontSize: 25,
+    paddingTop: 120,
+    textAlign: 'center'
   },
-  subheaeder: {
-    fontSize: 15
+  subheader: {
+    fontSize: 15,
+    textAlign: 'center',
+    padding: 20
   },
   backSet: {
     flex: 1,
@@ -31,8 +38,9 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   img: {
-    height: 50,
-    width: 50
+    flex: 1,
+    height: 350,
+    width: 250
   }
 
 });
@@ -56,7 +64,10 @@ class First extends Component {
 class Second extends Component {
   render() {
     return (
+      <View style={styles.container}>
       <Image style={styles.img} source={require('./hey.png')}/>
+      <Text style={styles.subheader}>Hey</Text>
+      </View>
     )
   }
 }
@@ -64,7 +75,10 @@ class Second extends Component {
 class Scenea extends Component {
   render() {
     return (
-      <Text>Hey, click me</Text>
+      <View>
+      <Text style={styles.header}>Greetings from Asbury Park, NJ</Text>
+      <Text style={styles.subheader}>Click to Continue</Text>
+      </View>
     )
   }
 }
@@ -77,6 +91,7 @@ class reactify extends Component {
       {title: 'Second', index: 1, set: <Second/>},
     ];
     return (
+      <View style={styles.container}>
       <Navigator
         initialRoute={routes[0]}
         initialRouteStack={routes}
@@ -95,6 +110,7 @@ class reactify extends Component {
         }
         style={{padding: 100}}
         ></Navigator>
+        </View>
     );
     
   }
