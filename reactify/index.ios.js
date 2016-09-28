@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   AppRegistry,
@@ -11,10 +5,12 @@ import {
   StyleSheet,
   Text,
   Image,
-  View
+  View,
+  TouchableHighlight,
 } from 'react-native';
 
 import PageTurn from './PageTurn.js';
+
 
 
 const styles = StyleSheet.create({
@@ -42,7 +38,7 @@ const styles = StyleSheet.create({
 });
 
 
-class Splash extends Component {
+class First extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -57,7 +53,7 @@ class Splash extends Component {
   }
 }
 
-class Wild extends Component {
+class Second extends Component {
   render() {
     return (
       <Image style={styles.img} source={require('./hey.png')}/>
@@ -68,7 +64,7 @@ class Wild extends Component {
 class Scenea extends Component {
   render() {
     return (
-      <Text>Hey</Text>
+      <Text>Hey, click me</Text>
     )
   }
 }
@@ -76,59 +72,33 @@ class Scenea extends Component {
 
 class reactify extends Component {
   render() {
+    const routes = [
+      {title: 'First', index: 0, set: <Scenea/>},
+      {title: 'Second', index: 1, set: <Second/>},
+    ];
     return (
-    <View style={styles.container}>
-      <Splash/>
-      
-
       <Navigator
-        initialRoute={{ title: 'My Initial Scene', index: 0 }}
-        renderScene = {(route, navigator) =>
-     
-          <PageTurn
-            title={route.title}
-
-            onForward= { () => {
-              const nextIndex = route.index + 'a';
-              navigator.push({
-                title: <Scenea/>,
-                index: nextIndex,
-
-              });
-            }}
-
-            onBack= {() => {
-              if (route.index > 0) {
-                navigator.pop();
-              }
-            }}
-          />
+        initialRoute={routes[0]}
+        initialRouteStack={routes}
+        renderScene={(route, navigator) => 
+                  
+          <TouchableHighlight onPress={() => {
+            if (route.index === 0) {
+              navigator.push(routes[1]);
+            } else {
+              navigator.pop();
+            }
+          }}>
+          <View>{route.set}</View>
+          </TouchableHighlight>
+         
         }
-      />
-      </View>
-
-      
-    )
+        style={{padding: 100}}
+        ></Navigator>
+    );
     
   }
 }
 
-
-/*class reactify extends Component {
-  render() {
-    return (
-      <View style={styles.backSet, styles.container}>
-        
-          <Splash/>
-          <Started/>
-          <HelloWorld/>
-        
-      </View>
-    )
-  }
-  
-}*/
-
-//AppRegistry.registerComponent('SimpleNavigationApp', () => SimpleNavigationApp);
 
 AppRegistry.registerComponent('reactify', () => reactify);
