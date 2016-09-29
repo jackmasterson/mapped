@@ -6,6 +6,7 @@ import {
   Text,
   Image,
   View,
+  MapView,
   TouchableHighlight,
 } from 'react-native';
 
@@ -45,11 +46,22 @@ const styles = StyleSheet.create({
 
 });
 
+class MapMyRide extends Component {
+  render() {
+    return (
+      <MapView
+        style={styles.img}
+        showsUserLocation={true}
+        ></MapView>
+    );
+  }
+}
 
 class First extends Component {
   render() {
     return (
       <View style={styles.container}>
+
         <Text style={styles.header}>
           Greetings from Asbury Park, NJ
         </Text>
@@ -65,7 +77,7 @@ class Second extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <Image style={styles.img} source={require('./hey.png')}/>
+      <MapMyRide/>
       <Text style={styles.subheader}>Hey</Text>
       </View>
     )
