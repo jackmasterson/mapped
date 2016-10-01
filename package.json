@@ -18,5 +18,9 @@
     "gulp-uglify": "^1.5.4",
     "gulp-useref": "^3.1.0",
     "run-sequence": "^1.2.2"
+  },
+  "dependencies": {
+    "react-native-google-static-map": "^0.1.7",
+    "react-native-maps-google": "^1.1.4"
   }
 }

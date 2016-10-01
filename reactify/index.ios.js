@@ -13,7 +13,6 @@ import {
 import PageTurn from './PageTurn.js';
 
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -52,10 +51,14 @@ class MapMyRide extends Component {
       <MapView
         style={styles.img}
         showsUserLocation={true}
-        ></MapView>
+        >
+
+        </MapView>
     );
   }
 }
+
+
 
 class First extends Component {
   render() {
@@ -77,7 +80,7 @@ class Second extends Component {
   render() {
     return (
       <View style={styles.container}>
-      <MapMyRide/>
+    
       <Text style={styles.subheader}>Hey</Text>
       </View>
     )
@@ -108,7 +111,7 @@ class reactify extends Component {
         initialRoute={routes[0]}
         initialRouteStack={routes}
         renderScene={(route, navigator) => 
-                  
+          <View>
           <TouchableHighlight onPress={() => {
             if (route.index === 0) {
               navigator.push(routes[1]);
@@ -116,8 +119,10 @@ class reactify extends Component {
               navigator.pop();
             }
           }}>
-          <View>{route.set}</View>
+          <Text>Click</Text>
           </TouchableHighlight>
+          <View>{route.set}</View>
+          </View>
          
         }
         style={{padding: 100}}
