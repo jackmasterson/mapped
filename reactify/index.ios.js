@@ -89,10 +89,9 @@ class First extends Component {
 class Second extends Component {
   render() {
     return (
-      <View>
+ 
+        <Text style={styles.header}>Hey</Text>
     
-      <Text style={styles.subheader}>Hey</Text>
-      </View>
     )
   }
 }
@@ -101,24 +100,20 @@ class Scenea extends Component {
   render() {
     return (
       <View>
-      <Text style={styles.header}>Greetings from Asbury Park, NJ</Text>
-      <Text style={styles.subheader}>Click to Continue</Text>
+        <Text style={styles.header}>Greetings from Asbury Park, NJ</Text>
+        <Text style={styles.subheader}>Click to Continue</Text>
       </View>
     )
   }
 }
 
-class NavButton extends Component {
+class Third extends Component {
   render() {
     return (
-      <View style={styles.NavContainer}>          
-            <Image source={require("./img/nav-left.png")} style={styles.img}/>
-            <Image source={require("./img/nav-right.png")} style={styles.img}/> 
-      </View>
+      <Text>Third Screen{'\n!'}</Text>
     )
   }
 }
-
 
 
 
@@ -127,6 +122,7 @@ class reactify extends Component {
     const routes = [
       {title: 'First', index: 0, set: <Scenea/>},
       {title: 'Second', index: 1, set: <Second/>},
+      {title: 'Third', index: 2, set: <Third/>},
     ];
     return (
       
@@ -135,10 +131,11 @@ class reactify extends Component {
         initialRouteStack={routes}
         renderScene={(route, navigator) => 
           <View>
-            <Scenea/>
-            
-          
+            {route.set}
+        
           </View>
+          
+
          
         }
         navigationBar={
@@ -150,19 +147,31 @@ class reactify extends Component {
                     return null;
                   } else {
 
-                  return (<TouchableHighlight onPress={() =>navigator.pop()}>
-                            <Image source={require("./img/nav-left.png")} 
-                              style={styles.img}/>
-                          </TouchableHighlight>)
+                  return (
+                            <TouchableHighlight onPress={() =>navigator.pop()}>
+                              <Image source={require("./img/nav-left.png")} 
+                                style={styles.img}/>
+                            </TouchableHighlight>
+                        )
                   } 
                 },
               RightButton: (route, navigator, index, navState) =>
-                {return (    
-                    <TouchableHighlight onPress={() => navigator.push(routes[1])}>
-                      <Image source={require("./img/nav-right.png")} 
-                        style={styles.img}/>
-                    </TouchableHighlight>
-                  ); 
+                {
+
+                  if(route.index < 1){
+                    return (    
+                  
+                      <TouchableHighlight onPress={() => 
+                        navigator.push(routes[1])}>
+                        <Image source={require("./img/nav-right.png")} 
+                          style={styles.img}/>
+                      </TouchableHighlight>
+
+                    
+                    ); 
+                  } else {
+                    return null
+                  }
                 },
               Title: (route, navigator, index, navState) =>
                 {return (<Text>Home</Text>); },
