@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   img: {
-    height: 50,
-    width: 50,
-    margin: 15
+    height: 30,
+    width: 30,
+    margin: 5
   },
   nav: {
     flex: 1,
@@ -50,9 +50,7 @@ const styles = StyleSheet.create({
   },
   NavContainer: {
     flexWrap: 'wrap',
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: 50
+    height: 50,
   }
 
 });
@@ -110,6 +108,17 @@ class Scenea extends Component {
   }
 }
 
+class NavButton extends Component {
+  render() {
+    return (
+      <View style={styles.NavContainer}>          
+            <Image source={require("./img/nav-left.png")} style={styles.img}/>
+            <Image source={require("./img/nav-right.png")} style={styles.img}/> 
+      </View>
+    )
+  }
+}
+
 
 
 
@@ -126,25 +135,44 @@ class reactify extends Component {
         initialRouteStack={routes}
         renderScene={(route, navigator) => 
           <View>
-          <View style={styles.container}>{route.set}</View>
-          <TouchableHighlight onPress={() => {
-            if (route.index === 0) {
-              navigator.push(routes[1]);
-            } else {
-              navigator.pop();
-            }
-          }}>
-          <View style={styles.NavContainer}>
-            <Image source={require("./img/nav-left.png")} style={styles.img}/>
-            <Image source={require("./img/nav-right.png")} style={styles.img}/>
-          </View>
-          </TouchableHighlight>
+            <Scenea/>
+            
           
           </View>
          
         }
-        style={{padding: 100}}
-        ></Navigator>
+        navigationBar={
+          <Navigator.NavigationBar
+            routeMapper={{
+              LeftButton: (route, navigator, index, navState) =>
+                {
+                  if (route.index === 0){
+                    return null;
+                  } else {
+
+                  return (<TouchableHighlight onPress={() =>navigator.pop()}>
+                            <Image source={require("./img/nav-left.png")} 
+                              style={styles.img}/>
+                          </TouchableHighlight>)
+                  } 
+                },
+              RightButton: (route, navigator, index, navState) =>
+                {return (    
+                    <TouchableHighlight onPress={() => navigator.push(routes[1])}>
+                      <Image source={require("./img/nav-right.png")} 
+                        style={styles.img}/>
+                    </TouchableHighlight>
+                  ); 
+                },
+              Title: (route, navigator, index, navState) =>
+                {return (<Text>Home</Text>); },
+            }}
+            style={{backgroundColor: 'gray'}}
+            />
+            
+      }
+
+        />
       
       
     );
