@@ -16,6 +16,7 @@ import PageTurn from './PageTurn.js';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: 350
   },
   text: {
     textAlign: 'center'
@@ -38,9 +39,20 @@ const styles = StyleSheet.create({
     fontSize: 20
   },
   img: {
+    height: 50,
+    width: 50,
+    margin: 15
+  },
+  nav: {
     flex: 1,
-    height: 350,
-    width: 250
+    height: 50,
+    width: 50
+  },
+  NavContainer: {
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 50
   }
 
 });
@@ -63,7 +75,7 @@ class MapMyRide extends Component {
 class First extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View>
 
         <Text style={styles.header}>
           Greetings from Asbury Park, NJ
@@ -79,7 +91,7 @@ class First extends Component {
 class Second extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View>
     
       <Text style={styles.subheader}>Hey</Text>
       </View>
@@ -99,6 +111,8 @@ class Scenea extends Component {
 }
 
 
+
+
 class reactify extends Component {
   render() {
     const routes = [
@@ -106,12 +120,13 @@ class reactify extends Component {
       {title: 'Second', index: 1, set: <Second/>},
     ];
     return (
-      <View style={styles.container}>
+      
       <Navigator
         initialRoute={routes[0]}
         initialRouteStack={routes}
         renderScene={(route, navigator) => 
           <View>
+          <View style={styles.container}>{route.set}</View>
           <TouchableHighlight onPress={() => {
             if (route.index === 0) {
               navigator.push(routes[1]);
@@ -119,15 +134,19 @@ class reactify extends Component {
               navigator.pop();
             }
           }}>
-          <Text>Click</Text>
+          <View style={styles.NavContainer}>
+            <Image source={require("./img/nav-left.png")} style={styles.img}/>
+            <Image source={require("./img/nav-right.png")} style={styles.img}/>
+          </View>
           </TouchableHighlight>
-          <View>{route.set}</View>
+          
           </View>
          
         }
         style={{padding: 100}}
         ></Navigator>
-        </View>
+      
+      
     );
     
   }
