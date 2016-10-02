@@ -116,11 +116,30 @@ class Third extends Component {
 }
 
 
+class Api extends Component {
+  render() {
+    
+      fetch('https://facebook.github.io/react-native/movies.json')
+        .then((response) => response.json())
+        .then((responseJson) => {
+          return responseJson.title;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    
+      console.log(responseJson.title)
+    
+  }
+}
+
+
+
 
 class reactify extends Component {
   render() {
     const routes = [
-      {title: 'First', index: 0, set: <Scenea/>},
+      {title: 'First', index: 0, set: <Api/>},
       {title: 'Second', index: 1, set: <Second/>},
       {title: 'Third', index: 2, set: <Third/>},
     ];
