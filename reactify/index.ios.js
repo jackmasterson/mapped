@@ -110,7 +110,7 @@ class Scenea extends Component {
 class Third extends Component {
   render() {
     return (
-      <Text>Third Screen{'\n!'}</Text>
+      <Text style={styles.header}>Third Screen</Text>
     )
   }
 }
@@ -132,6 +132,7 @@ class reactify extends Component {
         renderScene={(route, navigator) => 
           <View>
             {route.set}
+            <Text>{route.index}</Text>
         
           </View>
           
@@ -158,10 +159,11 @@ class reactify extends Component {
               RightButton: (route, navigator, index, navState) =>
                 {
 
-                  if(route.index < 1){
+                  if(route.index === 0){
                     return (    
                   
                       <TouchableHighlight onPress={() => 
+                        
                         navigator.push(routes[1])}>
                         <Image source={require("./img/nav-right.png")} 
                           style={styles.img}/>
@@ -169,12 +171,40 @@ class reactify extends Component {
 
                     
                     ); 
-                  } else {
-                    return null
+                  }
+                  if(route.index === 1){
+                    return (
+                      <TouchableHighlight onPress={() => 
+                        
+                        navigator.push(routes[2])}>
+                        <Image source={require("./img/nav-right.png")} 
+                          style={styles.img}/>
+                      </TouchableHighlight>
+                    )
                   }
                 },
               Title: (route, navigator, index, navState) =>
-                {return (<Text>Home</Text>); },
+                {
+                  if(route.index === 0){
+                    return (
+                      <Text>Scene 1</Text>
+                    )
+                  }
+                  if(route.index === 1){
+                    return(
+                      <Text>Scene 2</Text>
+                    )
+                  }
+                  if(route.index === 2){
+                    return (
+                      <Text>Scene 3</Text>
+                    )
+                  }
+                  
+                    
+
+                  
+                },
             }}
             style={{backgroundColor: 'gray'}}
             />
