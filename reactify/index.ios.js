@@ -124,7 +124,7 @@ class Api extends Component {
     }
   }
   render() {
-    
+      
       fetch('https://health.data.ny.gov/resource/tm7s-uhne.json')
         .then((response) => response.json())
         .then((responseJson) => {
@@ -136,8 +136,15 @@ class Api extends Component {
           console.error(error);
         });
        
+       
+
+
+        return (
+          <Text style={styles.header}>{this.state.jsonData.city}</Text>
         
-          return <Text style={styles.header}>{this.state.jsonData.city}</Text>
+        )
+        
+        
       
 
      /* return (<View>
