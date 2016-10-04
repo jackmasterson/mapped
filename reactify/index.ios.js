@@ -135,13 +135,11 @@ class Api extends Component {
         .catch((error) => {
           console.error(error);
         });
-    
-    //  console.log(responseJson.title);
-      
-      
-      console.log(this);
-      console.log(this.state);
-      return <Text style={styles.header}>{this.state.jsonData.title}</Text>
+
+      return (<View>
+              <Text style={styles.header}>{this.state.jsonData.title}</Text>
+              <Text style={styles.subheader}>{this.state.jsonData.description}</Text>
+              </View>)
   }
 
 }
