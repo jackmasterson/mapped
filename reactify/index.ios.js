@@ -125,21 +125,25 @@ class Api extends Component {
   }
   render() {
     
-      fetch('https://facebook.github.io/react-native/movies.json')
+      fetch('https://health.data.ny.gov/resource/tm7s-uhne.json')
         .then((response) => response.json())
         .then((responseJson) => {
           this.setState({
-            jsonData: responseJson
+            jsonData: responseJson[0]
           })
         })
         .catch((error) => {
           console.error(error);
         });
+       
+        
+          return <Text style={styles.header}>{this.state.jsonData.city}</Text>
+      
 
-      return (<View>
+     /* return (<View>
               <Text style={styles.header}>{this.state.jsonData.title}</Text>
               <Text style={styles.subheader}>{this.state.jsonData.description}</Text>
-              </View>)
+              </View>)*/
   }
 
 }
@@ -162,7 +166,7 @@ class reactify extends Component {
         renderScene={(route, navigator) => 
           <View>
             {route.set}
-            <Text>{route.index}</Text>
+            <Text style={styles.subheader}>{route.index}</Text>
         
           </View>
           
