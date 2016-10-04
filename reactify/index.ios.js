@@ -117,20 +117,33 @@ class Third extends Component {
 
 
 class Api extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      jsonData: ''
+    }
+  }
   render() {
     
       fetch('https://facebook.github.io/react-native/movies.json')
         .then((response) => response.json())
         .then((responseJson) => {
-          return responseJson.title;
+          this.setState({
+            jsonData: responseJson
+          })
         })
         .catch((error) => {
           console.error(error);
         });
     
-      console.log(responseJson.title)
-    
+    //  console.log(responseJson.title);
+      
+      
+      console.log(this);
+      console.log(this.state);
+      return <Text style={styles.header}>{this.state.jsonData.title}</Text>
   }
+
 }
 
 
