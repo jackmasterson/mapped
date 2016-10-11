@@ -131,7 +131,7 @@ class Api extends Component {
         .then((response) => response.json())
         .then((responseJson) => {
             for(var i=0; i<10; i++){
-              rows.push(responseJson[i].city + '\n');
+              rows.push(<Text key={i} style={styles.header}>{responseJson[i].city}</Text>);
             }
             //console.log(rows);
             this.setState({
@@ -144,7 +144,7 @@ class Api extends Component {
         });
 
         return (
-          <Text style={styles.header}>{this.state.jsonData}</Text>
+          <View>{this.state.jsonData}</View>
         )
   }
 
