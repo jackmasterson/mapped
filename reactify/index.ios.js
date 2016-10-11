@@ -120,10 +120,14 @@ class Api extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jsonData: ''
+      jsonData: 'Loading some cool info!'
     }
   }
   render() {
+      var rows=[];
+      for(var i=0; i<10; i++){
+        rows.push(<Text key={i}>{i}</Text>);
+      }
       
       fetch('https://health.data.ny.gov/resource/tm7s-uhne.json')
         .then((response) => response.json())
@@ -136,12 +140,12 @@ class Api extends Component {
           console.error(error);
         });
        
-       
-
-
         return (
-          <Text style={styles.header}>{this.state.jsonData.city}</Text>
-        
+          <View>
+            <TouchableHighlight>
+              <Text style={styles.header}>{rows}</Text>
+            </TouchableHighlight>
+          </View>
         )
         
         
