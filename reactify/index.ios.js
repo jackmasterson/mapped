@@ -131,37 +131,21 @@ class Api extends Component {
         .then((response) => response.json())
         .then((responseJson) => {
             for(var i=0; i<10; i++){
-              rows.push(<Text key={i}>{responseJson[i].city} {'\n'}</Text>);
+              rows.push(responseJson[i].city + '\n');
             }
-
-            console.log(rows);
+            //console.log(rows);
             this.setState({
               jsonData: rows
             })
-          //  console.log(this.state.jsonData[0].props.children)
-          console.log(this.state.jsonData);
-        
+            //console.log(this.state.jsonData);
         })
         .catch((error) => {
           console.error(error);
         });
-       
-       
-
 
         return (
-
           <Text style={styles.header}>{this.state.jsonData}</Text>
-
         )
-        
-        
-      
-
-     /* return (<View>
-              <Text style={styles.header}>{this.state.jsonData.title}</Text>
-              <Text style={styles.subheader}>{this.state.jsonData.description}</Text>
-              </View>)*/
   }
 
 }
