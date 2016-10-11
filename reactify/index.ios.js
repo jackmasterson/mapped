@@ -131,7 +131,7 @@ class Api extends Component {
         .then((response) => response.json())
         .then((responseJson) => {
             for(var i=0; i<10; i++){
-              rows.push(<Text key={i}>{responseJson[i].city}</Text>);
+              rows.push(<Text key={i}>{responseJson[i].city} {'\n'}</Text>);
             }
 
             console.log(rows);
