@@ -120,32 +120,48 @@ class Api extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jsonData: []
+      city: []
     }
   }
   render() {
-      var rows=[];
+      var cities = [];
+      var infos = [];
+      var exp = [];
       console.log(this.state);
       
       fetch('https://health.data.ny.gov/resource/tm7s-uhne.json')
         .then((response) => response.json())
         .then((responseJson) => {
             for(var i=0; i<10; i++){
-              rows.push(<Text key={i} style={styles.header}>{responseJson[i].city}</Text>);
+              cities.push(  <View key={i}>
+                              <Text style={styles.header}>
+                                {responseJson[i].city}
+                              </Text>
+                              <Text style={styles.subheader}>
+                                {responseJson[i].street_address}
+                              </Text>
+                              <Text style={styles.subheader}>
+                                {responseJson[i].grade_category}
+                              </Text>
+                            </View>
+                        );
             }
-            //console.log(rows);
             this.setState({
-              jsonData: rows
+              city: cities
             })
-            //console.log(this.state.jsonData);
         })
         .catch((error) => {
           console.error(error);
         });
 
         return (
-          <View>{this.state.jsonData}</View>
-        )
+              <View>
+                
+                 {this.state.city}
+                 
+              </View>
+
+        );
   }
 
 }
